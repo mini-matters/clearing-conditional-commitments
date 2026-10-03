@@ -33,6 +33,7 @@ design, k-anonymity, market design, assurance contracts.
 - `appendix/` — Propositions 1–3, statements and proofs
 - `references.bib` — bibliography (41 entries, citation-verified)
 - `figures/make_figs.py` — figure generation
+- `numerics/` — the numerical companion: model, verification, and counterexample-search scripts behind the propositions and figures (see `numerics/README.md`)
 - `main.pdf`, `figures/*.pdf` — build artifacts, committed for convenience
 - `SOURCES.md` — canon/precedence map for the source tree
 
@@ -42,14 +43,25 @@ design, k-anonymity, market design, assurance contracts.
 tectonic main.tex
 ```
 
-Figures regenerate via `make_figs.py`, which imports solver scripts from the
-numerical companion (`runs/numcheck/`); those scripts live outside this
-snapshot, so figure regeneration requires the full working tree. The committed
-`figures/*.pdf` are current.
+Figures regenerate from the repository root:
+
+```bash
+uv run --with numpy --with scipy --with matplotlib python figures/make_figs.py
+```
+
+The numerical scripts run the same way, for example
+`uv run --with numpy --with scipy python numerics/check.py`. `numerics/README.md`
+records what each script checks and its results of record. Some of its notes refer to
+working documents that are not part of this snapshot.
+
+## Read more
+
+- Paper on SSRN: https://ssrn.com/abstract=6946318
+- Plain-language introduction (Estate of Bits): https://estateofbits.substack.com/p/i-will-if-enough-of-the-right-others
 
 ## Provenance
 
 This is a decoupled snapshot of the canonical working tree (private). The
-plain-language companion introduction is published separately and is not part
-of this repository. Paths in `SOURCES.md` referring to `companion-intro.*` or
+plain-language companion introduction is published separately (linked above) and is
+not part of this repository. Paths in `SOURCES.md` referring to `companion-intro.*` or
 `~/om/docs/lit/...` describe the canonical tree, not this snapshot.

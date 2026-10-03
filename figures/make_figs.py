@@ -1,7 +1,7 @@
 """Generate the three working-paper figures from the verified numcheck model scripts.
 
-Run from /Users/iqqo/om/docs/lit/conditional-commitment/runs/numcheck/ via:
-  uv run --with numpy --with scipy --with matplotlib python /Users/iqqo/om/docs/paper-ccc-v1/figures/make_figs.py
+Run from the repository root:
+  uv run --with numpy --with scipy --with matplotlib python figures/make_figs.py
 """
 
 import sys
@@ -14,8 +14,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.stats import beta
 
-NUMCHECK = "/Users/iqqo/om/docs/lit/conditional-commitment/runs/numcheck"
-OUT = "/Users/iqqo/om/docs/paper-ccc-v1/figures"
+import os
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+NUMCHECK = os.path.join(HERE, "..", "numerics")
+OUT = os.environ.get("FIG_OUT", HERE)
 sys.path.insert(0, NUMCHECK)
 
 import v9_dynamic_two_channel as s11  # noqa: E402
